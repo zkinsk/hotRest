@@ -61,6 +61,7 @@ app.get("/api/waitlist", function(req, res) {
   return res.json(wait);
 });
 app.post("/api/clear", function(req, res) {
+  res.json("Clearing!");
   reservations = [];
   wait = [];
 });

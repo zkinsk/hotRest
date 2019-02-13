@@ -110,15 +110,14 @@
 
 		// Here we get the location of the root page.
 		// We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
-		var currentURL = window.location.origin;
+		// var currentURL = window.location.origin;
 
 		// The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
-		$.ajax({url: currentURL + "/api/waitlist", method: "GET"})
-			.done(function(waitlistData) {
+		$.post("/api/waitlist", function(waitlistData) {
 
 				// Here we are logging the URL so we have access to it for troubleshooting
 				console.log("------------------------------------");
-				console.log("URL: " + currentURL + "/api/waitlist");
+				console.log("URL: /api/waitlist");
 				console.log("------------------------------------");
 
 				// Here we then log the NYTData to console, where it will show up as an object.
@@ -126,7 +125,7 @@
 				console.log("------------------------------------")
 
 				// Loop through and display each of the customers
-				for (var i=0; i<waitlistData.length; i++){
+				for (var i=0; i < waitlistData.length; i++){
 
 					// Create the HTML Well (Section) and Add the table content for each reserved table
 					var waitlistSection = $("<div>");
@@ -145,13 +144,15 @@
 	// This function resets all of the data in our tables. This is intended to let you restart a demo.
 	function clearTable(){
 
-		var currentURL = window.location.origin;
-		$.ajax({url: currentURL + "/api/clear", method: "POST"})
-
+		// var currentURL = window.location.origin;
+		// $.ajax({url: currentURL + "/api/clear", method: "POST"})
+		$.post("/api/clear", function(callback){
+			alert(callback);
+		})
 	}
 
 	$("#clear").on('click', function(){
-		alert("Clearing...");
+		// alert("Clearing...");
 		clearTable();
 
 		// Refresh the page after data is cleared
