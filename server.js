@@ -60,3 +60,7 @@ app.get("/api/tables", function(req, res) {
 app.get("/api/waitlist", function(req, res) {
   return res.json(wait);
 });
+app.post("/api/clear", function(req, res) {
+  reservations = [];
+  wait = [];
+});
